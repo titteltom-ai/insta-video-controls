@@ -1,0 +1,116 @@
+#ivc-overlay {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  z-index: 2147483647;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease-in-out;
+}
+
+#ivc-overlay.ivc-visible {
+  opacity: 1;
+}
+
+/* ---------- Schieberegler-Leiste (Scrubber) ---------- */
+
+#ivc-scrubber {
+  position: fixed;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(420px, 82vw);
+  z-index: 2147483647;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+}
+
+#ivc-scrubber.ivc-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#ivc-scrubber-time {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.65);
+  padding: 3px 9px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+#ivc-scrubber.ivc-dragging #ivc-scrubber-time {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Großzügige, unsichtbare Grabfläche rund um die dünne Linie, damit man
+   beim Klicken/Ziehen nicht exakt treffen muss. */
+#ivc-scrubber-hit {
+  width: 100%;
+  padding: 16px 0;
+  cursor: pointer;
+  touch-action: none;
+}
+
+#ivc-scrubber-track {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.32);
+  transition: height 0.12s ease-in-out;
+}
+
+#ivc-scrubber-hit:hover #ivc-scrubber-track,
+#ivc-scrubber.ivc-dragging #ivc-scrubber-track {
+  height: 6px;
+}
+
+#ivc-scrubber-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #f58529, #dd2a7b, #8134af, #515bd4);
+}
+
+#ivc-scrubber-thumb {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
+  transform: translate(-50%, -50%) scale(0.8);
+  transition: transform 0.12s ease-in-out;
+  pointer-events: none;
+}
+
+#ivc-scrubber-hit:hover #ivc-scrubber-thumb,
+#ivc-scrubber.ivc-dragging #ivc-scrubber-thumb {
+  transform: translate(-50%, -50%) scale(1.2);
+}
