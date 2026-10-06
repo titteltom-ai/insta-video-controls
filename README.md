@@ -15,6 +15,7 @@ schneller/langsamer machen und vor-/zurückspulen kann.
 | Z            | Sprunggröße erhöhen (+1s)                          |
 | H             | Sprunggröße verringern (-0,20s)                    |
 | Leertaste (Space) | Pause / Weiter                                 |
+| M            | Stummschalten / Ton an                            |
 
 Beim Tippen in Kommentar-/Suchfelder sind die Tasten automatisch deaktiviert,
 damit z. B. "s" oder "d" normal geschrieben werden können.

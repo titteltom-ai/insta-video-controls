@@ -4,6 +4,7 @@
 //   G = vorspulen          J = zurückspulen       (Standard-Sprung: 2s)
 //   Z = Sprunggröße +1s    H = Sprunggröße -0,20s
 //   Leertaste (Space) = Pause / Weiter
+//   M = Stummschalten / Ton an
 
 const SPEED_STEP = 0.25;
 const MIN_SPEED = 0.25;
@@ -123,6 +124,13 @@ function togglePlayPause() {
   }
 }
 
+function toggleMute() {
+  const video = getActiveVideo();
+  if (!video) return;
+  video.muted = !video.muted;
+  showOverlay(video.muted ? "🔇 Stumm" : "🔊 Ton an");
+}
+
 document.addEventListener(
   "keydown",
   (event) => {
@@ -153,6 +161,9 @@ document.addEventListener(
         break;
       case " ":
         togglePlayPause();
+        break;
+      case "m":
+        toggleMute();
         break;
       default:
         return;
